@@ -18,9 +18,16 @@ var addNote = (title, body) => {
     body
   };
 
-  notes.push(note);
-  fs.writeFileSync('note-data.json',JSON.stringify(notes));
-  console.log('Note added to the file');
+  var duplicateNotes=notes.filter((note)=>note.title===title);
+  if(duplicateNotes.length===0)
+  {
+      notes.push(note);
+      fs.writeFileSync('note-data.json',JSON.stringify(notes));
+      console.log('Note added to the file');
+  }else{
+      console.log('Note with the current title already exist');
+  }
+  
 };
 
 var getAll = () => {
