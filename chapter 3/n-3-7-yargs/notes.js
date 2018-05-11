@@ -5,9 +5,14 @@ var addNote = (title, body) => {
   
   var notes=[];
 
-  var notesString=fs.readFileSync('note-data.json');
-  notes=JSON.parse(notesString);
+  try{
+    var notesString=fs.readFileSync('note-data.json');
+    notes=JSON.parse(notesString);
 
+  }catch(e){
+
+  }
+  
   var note={
     title,
     body
