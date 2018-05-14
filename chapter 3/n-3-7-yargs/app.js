@@ -12,13 +12,24 @@ var command = argv._[0];
 // console.log('Yargs', argv);
 
 if (command === 'add') {
-  notes.addNote(argv.title, argv.body);
+  var note=notes.addNote(argv.title, argv.body);
+  if(note){
+    console.log("Note created!!");
+    console.log("Note '"+argv.title+"' is created");
+  }else{
+    console.log("Note '"+argv.title+"' alread exist !!");
+  }
 } else if (command === 'list') {
   notes.getAll();
 } else if (command === 'read') {
   notes.getNote(argv.title);
 } else if (command === 'remove') {
-  notes.removeNote(argv.title);
+  var title=notes.removeNote(argv.title);
+  if(title){
+    console.log("'"+title+"' note deleted !!");
+  }else{
+    console.log("'"+argv.title+"' note not found !!")
+  }
 } else {
   console.log('Command not recognized');
 }
